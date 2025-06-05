@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bg-hero-pattern {
+  background-image: url("/group-377.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left center;
+}
