@@ -52,28 +52,28 @@ const Hero = () => {
             {/* Иконки и карточки */}
             <div className="absolute top-0 left-0 w-full h-full">
               {/* Google */}
-              <div className="absolute top-[35%] left-[-30px] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
+              <div className="absolute top-[35%] left-[-30px] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center jump-loop">
                 <img src="/google.png" className="w-6 h-6" alt="Google" />
               </div>
 
               {/* Slack */}
-              <div className="absolute top-[10%] right-[-30px] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
+              <div className="absolute top-[10%] right-[-30px] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center jump-loop">
                 <img src="/slack.png" className="w-6 h-6" alt="Slack" />
               </div>
 
               {/* PayPal */}
-              <div className="absolute bottom-[5%] right-[-30px] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
+              <div className="absolute bottom-[5%] right-[-30px] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center jump-loop">
                 <img src="/paypal.png" className="w-6 h-6" alt="PayPal" />
               </div>
 
               {/* Placeholder */}
-              <div className="absolute top-[5%] left-[15%] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center">
+              <div className="absolute top-[5%] left-[15%] w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center jump-loop">
                 <img src="/placeholder.png" className="w-6 h-6" alt="Microphone" />
               </div>
 
               {/* Adam */}
-              <div className="absolute top-[50%] right-[-110px] w-[140px] bg-white rounded-2xl shadow-lg p-2">
-                <div className="w-full h-[80px] bg-yellow-400 rounded-lg overflow-hidden flex items-center justify-center">
+              <div className="absolute top-[50%] right-[-110px] w-[140px] bg-white rounded-2xl shadow-lg p-2 jump-loop">
+                <div className="w-full h-[80px] bg-yellow-400 rounded-lg overflow-hidden flex items-center justify-center ">
                   <img src="/adam.png" alt="Adam" className="h-full" />
                 </div>
                 <div className="mt-1 text-sm font-semibold text-black">Adam</div>
@@ -81,7 +81,7 @@ const Hero = () => {
               </div>
 
               {/* Maliha */}
-              <div className="absolute bottom-[-10%] left-[-110px] w-[140px] bg-white rounded-2xl shadow-lg p-2">
+              <div className="absolute bottom-[-10%] left-[-110px] w-[140px] bg-white rounded-2xl shadow-lg p-2 jump-loop">
                 <div className="w-full h-[80px] bg-purple-600 rounded-lg overflow-hidden flex items-center justify-center">
                   <img src="/milaha.png" alt="Maliha" className="h-full" />
                 </div>

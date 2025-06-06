@@ -31,3 +31,29 @@ body {
   background-size: contain;
   background-position: left center;
 }
+
+@keyframes jumpLoop {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.jump-loop {
+  animation: jumpLoop 1.8s ease-in-out infinite;
+}
+
+.bg-popular-pattern {
+  background-image: url("/group-377.png");
+  background-repeat: repeat;
+  background-size: 50%;
+  background-position: center;
+  filter:brightness(1.3);
+}
