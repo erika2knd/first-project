@@ -3,8 +3,8 @@ import React from "react";
 const PostJob = () => {
   return (
     <section
-  className="relative py-24 bg-cover bg-no-repeat bg-center overflow-visible"
-  style={{ backgroundImage: "url('/colour.png')" }}
+  className="relative py-24 bg-cover h-750px w-1024px"
+  style={{ backgroundImage: "url('/Back.png')" }}
 >
   <div className="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16">
     
