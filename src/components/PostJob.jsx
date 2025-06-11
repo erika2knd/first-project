@@ -2,28 +2,33 @@ import React from "react";
 
 const PostJob = () => {
   return (
-    <section
-  className="relative py-24 bg-cover h-750px w-1024px"
-  style={{ backgroundImage: "url('/Back.png')" }}
->
-  <div className="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16">
-    
-    {/* Левая колонка */}
-    <div className="relative lg:-ml-12">
+    <section className="relative py-20 overflow-visible bg-white">
+  {/* Background */}
+  <img
+    src="/Back.png"
+    alt="Background"
+    className="absolute top-0 left-0 w-full h-[560px] object-cover z-0"
+  />
+
+  {/* Content */}
+  <div className="relative z-10 container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-10">
+    {/* Chair Image */}
+    <div className="relative">
       <img
         src="/Chair.png"
-        alt="Office"
-        className="rounded-3xl shadow-xl w-full max-w-md translate-y-10" 
+        alt="Office Chair"
+        className="w-full max-w-md relative z-10 -mb-16"
       />
     </div>
 
-    {/* Правая колонка */}
-    <div className="lg:w-1/2">
-      <h2 className="text-3xl text-gray-900 font-bold mb-4">
+    {/* Text */}
+    <div className="lg:w-1/2 mt-[-100px]">
+      <h2 className="text-3xl font-bold mb-10 text-gray-900">
         Post a Job for <br /> UX Designer
       </h2>
-      <p className="text-gray-600 mb-6 max-w-md">
-        create an account so you can get job information that suits you, and you can apply the salary your demand.
+      <p className="text-gray-600 mb-6">
+        create an account so you can get job information that suits you,
+        and you can apply the salary your demand.
       </p>
       <button className="bg-[#EE4F3C] text-white px-6 py-3 rounded-md hover:bg-[#d94433] transition">
         Post a Job
@@ -36,4 +41,7 @@ const PostJob = () => {
 };
 
 export default PostJob;
+
+
+
 
