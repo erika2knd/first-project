@@ -4,11 +4,11 @@ const Navbar = () => {
   return (
     <header className="bg-white py-6 shadow-sm">
       <div className="container mx-auto px-6 flex items-center justify-between">
-        
-        <div className="text-2xl font-extrabold">
-          <span className="text-blue-900">JOB</span>
-          <span className="text-orange-500">PLY</span>
-        </div>
+
+        <a href="#" className="text-3xl font-bold text-[#1C1F35]">
+          J<span className="text-[#EE4F3C]">O</span>BPLY
+        </a>
+
 
         
         <nav className="hidden md:flex gap-8 text-gray-900 font-medium">

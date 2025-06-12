@@ -4,6 +4,7 @@ import PopularJobs from "@/components/PopularJobs";
 import PostJob from "@/components/PostJob";
 import Feedback from "@/components/Feedback";
 import Subscribe from "@/components/Subscribe";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <PostJob/>
       <Feedback/>
       <Subscribe/>
+      <Footer/>
       
     </main>
   );

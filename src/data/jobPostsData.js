@@ -10,8 +10,6 @@ const jobPosts = [
     salary: "$10k – $25k",
     logo: "/slack.png",
     avatars: ["/avarat-1.jpg", "/avatar-2.jpg"],
-    gradient: "from-[#9B3131] to-[#6B3636]",
-    isGradient: true,
   },
   {
     id: 2,
@@ -22,7 +20,7 @@ const jobPosts = [
     salary: "$10k – $25k",
     logo: "/google.png",
     avatars: ["/avatar-3.jpg", "/avatar-4.jpg"],
-    isGradient: false,
+    
   },
   {
     id: 3,
@@ -33,7 +31,7 @@ const jobPosts = [
     salary: "$10k – $25k",
     logo: "/placeholder.png",
     avatars: ["/avatar-5.jpg", "/avatar-6.jpg"],
-    isGradient: false,
+   
   },
 ];
 
