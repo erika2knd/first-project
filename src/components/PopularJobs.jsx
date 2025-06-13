@@ -7,7 +7,7 @@ const PopularJobs = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 lg:mb-20">Popular Job Posts</h2>
 
-        <div className="flex flex-col lg:flex-row justify-center gap-6">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-6">
           {jobPosts.map((job) => (
             <div
               key={job.id}

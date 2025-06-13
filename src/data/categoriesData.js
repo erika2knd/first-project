@@ -8,9 +8,8 @@ const categories = [
   {
     id: 2,
     title: "UI/UX Designer",
-    icon: "/computer.png",
+    icon: "/comp.png",
     vacancies: 150,
-    isOrangeBg: true,
   },
   {
     id: 3,
