@@ -5,17 +5,19 @@ import PostJob from "@/components/PostJob";
 import Feedback from "@/components/Feedback";
 import Subscribe from "@/components/Subscribe";
 import Footer from "@/components/Footer";
+import SearchPage from "@/components/SearchPage";
 
 export default function Home() {
   return (
     <main>
-      <Hero />
+      <SearchPage/>
       <PopularJobs/>
       <JobCategories />
       <PostJob/>
       <Feedback/>
       <Subscribe/>
       <Footer/>
+      
       
     </main>
   );

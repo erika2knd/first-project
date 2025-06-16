@@ -1,6 +1,16 @@
-import React from "react";
+'use client';
+import React, { useState } from "react";
 
-const Hero = () => {
+const Hero = ({ onSearch }) => {
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+
+  const handleSearch = () => {
+    if (title.trim() || location.trim()) {
+      onSearch(title, location);
+    }
+  };
+
   return (
     <section className="relative bg-white pt-10 sm:pt-16 pb-20 bg-hero-pattern overflow-hidden">
       <div className="container mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-10">
@@ -19,14 +29,21 @@ const Hero = () => {
             <input
               type="text"
               placeholder="Job title or Keyword"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               className="border border-gray-300 rounded-lg px-4 py-3 w-full text-gray-600"
             />
             <input
               type="text"
               placeholder="Location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
               className="border border-gray-300 rounded-lg px-4 py-3 w-full text-gray-600"
             />
-            <button className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition w-full sm:w-auto">
+            <button
+              onClick={handleSearch}
+              className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition w-full sm:w-auto"
+            >
               Search
             </button>
           </div>
