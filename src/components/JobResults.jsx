@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -18,7 +17,7 @@ const JobResults = ({ title, location }) => {
             params: {
               app_id: "b8f35ecd",
               app_key: "cd85429465467e2cc68f9dce4a604ce3",
-              results_per_page: 9,
+              results_per_page: 10,
               what: title || undefined,
               where: location || undefined,
             },
@@ -36,48 +35,60 @@ const JobResults = ({ title, location }) => {
     fetchJobs();
   }, [title, location]);
 
+  if (!title && !location) return null;
+
   return (
-    <section className="bg-white py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
+    <section className="relative bg-white py-20 overflow-hidden">
+      <img
+        src="/Back-2.png"
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      />
+      <div className="relative z-10 max-w-6xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">
           Search Results
         </h2>
-
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="animate-pulse bg-white h-28 rounded-xl shadow-sm" />
-            ))}
-          </div>
+          <p className="text-center text-gray-600">Loading jobs...</p>
         ) : jobs.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {jobs.map((job) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {jobs.map((job, index) => (
               <div
                 key={job.id}
-                className="group relative bg-white border border-gray-200 rounded-xl shadow-sm p-6 hover:shadow-lg transition-all duration-300 hover:bg-gradient-to-r hover:from-orange-100 hover:to-pink-100"
+                style={{ animationDelay: `${index * 100}ms` }}
+                className="bg-white border border-gray-200 rounded-xl shadow-sm p-5 text-gray-900 transition-all duration-300 hover:from-[#9B3131] hover:to-[#6B3636] hover:bg-gradient-to-r hover:text-white animate-fade-in-up opacity-0"
               >
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition">
+                <h3 className="text-lg font-semibold mb-1 leading-snug">
                   {job.title}
                 </h3>
-                <p className="text-sm text-gray-500">{job.location.display_name}</p>
-                {job.salary_min && (
-                  <p className="text-sm text-gray-700 mt-1">
-                    💰 {Math.floor(job.salary_min)} – {Math.floor(job.salary_max)} {job.salary_currency}
+                <p className="text-sm mb-1 text-gray-600 hover:text-white">
+                  {job.location.display_name}
+                </p>
+                {job.salary_min && job.salary_max && (
+                  <p className="text-sm font-medium mb-1">
+                    {job.salary_currency} {Math.round(job.salary_min)} – {Math.round(job.salary_max)}
+                  </p>
+                )}
+                {job.contract_time && (
+                  <p className="text-sm mb-1 capitalize">
+                    {job.contract_time}
                   </p>
                 )}
                 <a
                   href={job.redirect_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-4 text-sm font-medium text-orange-500 hover:underline"
+                  className="text-sm font-medium underline hover:no-underline"
                 >
-                  View Job →
+                  View Job
                 </a>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500">No jobs found. Try another search 🔎</p>
+          <p className="text-center text-gray-600">
+            No jobs found. Try another search.
+          </p>
         )}
       </div>
     </section>
@@ -85,6 +96,9 @@ const JobResults = ({ title, location }) => {
 };
 
 export default JobResults;
+
+
+
 
 
 
