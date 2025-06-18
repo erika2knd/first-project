@@ -25,7 +25,10 @@ const Hero = ({ onSearch }) => {
           </p>
 
           {/* Search Form */}
-          <div className="bg-white shadow-lg rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-center w-full max-w-xl mx-auto lg:mx-0">
+          <form
+            onSubmit={(e) => {e.preventDefault(); handleSearch();}}
+              className="bg-white shadow-lg rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-center w-full max-w-xl mx-auto lg:mx-0">
+                <div className="relative w-full">
             <input
               type="text"
               placeholder="Job title or Keyword"
@@ -33,6 +36,13 @@ const Hero = ({ onSearch }) => {
               onChange={(e) => setTitle(e.target.value)}
               className="border border-gray-300 rounded-lg px-4 py-3 w-full text-gray-600"
             />
+            {title && (
+              <button type="button" onClick={() => setTitle("")} className="absolute right-3 top-[10%] text-sm text-grey-400 hover:text-gray-600">
+                x
+              </button> 
+            )}
+          </div>
+          <div className="relative w-full">
             <input
               type="text"
               placeholder="Location"
@@ -40,13 +50,32 @@ const Hero = ({ onSearch }) => {
               onChange={(e) => setLocation(e.target.value)}
               className="border border-gray-300 rounded-lg px-4 py-3 w-full text-gray-600"
             />
+            {location && (
+              <button type="button" onClick={() => setLocation("")} className="absolute right-3 top-[10%] text-sm text-grey-400 hover:text-gray-600">
+                x
+              </button>
+            )}
+          </div>
             <button
-              onClick={handleSearch}
+              type="submit"
               className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition w-full sm:w-auto"
             >
               Search
             </button>
-          </div>
+            {(title || location) && (
+              <button
+                type="button"
+                onClick={() => {
+                  setTitle("");
+                  setLocation("");
+                  onSearch("", "");
+                }}
+                className="text-gray-400 text-sm hover:text-gray-600 transition -mt-2"
+              >
+                Clear Search
+              </button>
+            )}
+          </form>
         </div>
 
         {/* Right Side */}
