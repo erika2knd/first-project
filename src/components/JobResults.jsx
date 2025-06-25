@@ -1,24 +1,42 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json";
+
+countries.registerLocale(enLocale);
+
+const getCountryCode = (countryName) => {
+  return countries.getAlpha2Code(countryName, "en")?.toLowerCase();
+};
 
 const JobResults = ({ title, location }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [countryError, setCountryError] = useState(""); // 👈 добавлено состояние ошибки
 
   useEffect(() => {
     if (!title && !location) return;
+
+    const countryCode = getCountryCode(location);
+    if (!countryCode) {
+      setCountryError("We couldn't recognize the country. Please try another one.");
+      setJobs([]);
+      return;
+    }
+
+    setCountryError(""); // сброс ошибки, если всё ок
 
     const fetchJobs = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://api.adzuna.com/v1/api/jobs/gb/search/${page}`,
+          `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/${page}`,
           {
             params: {
               app_id: "b8f35ecd",
               app_key: "cd85429465467e2cc68f9dce4a604ce3",
-              results_per_page: 10,
+              results_per_page: 9,
               what: title || undefined,
               where: location || undefined,
             },
@@ -46,9 +64,15 @@ const JobResults = ({ title, location }) => {
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
       <div className="relative z-10 max-w-5xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">
+        <h2 className="text-3xl font-bold text-center mb-6 text-gray-900">
           Search Results
         </h2>
+
+        {countryError && (
+          <div className="text-center text-red-500 font-medium mb-6">
+            {countryError}
+          </div>
+        )}
 
         {loading ? (
           <div className="text-center text-gray-600 animate-pulse">
@@ -116,9 +140,11 @@ const JobResults = ({ title, location }) => {
             </div>
           </>
         ) : (
-          <div className="text-center text-gray-500 mt-10">
-            <p>No jobs found. Try another search.</p>
-          </div>
+          !countryError && (
+            <div className="text-center text-gray-500 mt-10">
+              <p>No jobs found. Try another search.</p>
+            </div>
+          )
         )}
       </div>
     </section>

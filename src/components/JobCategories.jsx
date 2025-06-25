@@ -1,7 +1,17 @@
+'use client';
 import React from "react";
 import categories from "../data/categoriesData";
+import { useRouter } from "next/navigation";
 
 const JobCategories = () => {
+  const router = useRouter();
+
+const handleCategoryClick = (title) => {
+  router.push(`/?title=${encodeURIComponent(title)}`);
+};
+
+    
+  
   return (
     <section className="pt-20 pb-32 bg-white text-gray-800">
       <div className="container mx-auto px-4">
@@ -12,7 +22,8 @@ const JobCategories = () => {
           {categories.map((cat) => (
             <div
               key={cat.id}
-              className="bg-white shadow-md rounded-xl p-4 text-center hover:shadow-lg transition"
+              onClick={() => handleCategoryClick(cat.title)}
+              className="cursor-pointer bg-white shadow-md rounded-xl p-4 text-center hover:shadow-lg transition"
             >
               <div
                 className="group bg-white w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center shadow-md transition-all duration-300 hover:bg-[#EE4F3C]"
@@ -76,6 +87,7 @@ const JobCategories = () => {
     </section>
   );
 };
+
 
 export default JobCategories;
 

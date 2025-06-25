@@ -1,9 +1,22 @@
 'use client';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 
 const Hero = ({ onSearch }) => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router?.query?.title) {
+      setTitle(router.query.title);
+    }
+
+    if (router?.query?.location) {
+      setLocation(router.query.location);
+    }
+  }, [router]);
 
   const handleSearch = () => {
     if (title.trim() || location.trim()) {
