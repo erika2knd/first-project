@@ -1,11 +1,14 @@
-import React from "react";
+'use client';
+
+import React, { useState } from "react";
 import FeedbackData from "../data/FeedbackData";
 
 const Feedback = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <section className="py-20 pb-40 bg-white">
       <div className="container mx-auto px-4">
-        
         <h2 className="text-4xl text-gray-900 font-bold text-left mb-12 leading-snug">
           Great Feedback <br /> From Candidates
         </h2>
@@ -15,12 +18,14 @@ const Feedback = () => {
           {FeedbackData.map((item, index) => (
             <div
               key={index}
-              className="bg-white min-w-[340px] max-w-[340px] p-6 rounded-2x1 shadow transition-shadow duration-300 hover:shadow-xl flex-shrink-0 h-[320px] flex flex-col justify-between"
+              onClick={() => setActiveIndex(index)}
+              className={`bg-white min-w-[340px] max-w-[340px] p-6 rounded-2x1 shadow transition-all duration-300 flex-shrink-0 h-[320px] flex flex-col justify-between cursor-pointer hover:shadow-xl ${
+                index === activeIndex ? "scale-105  shadow-lg" : ""
+              }`}
             >
               <div className="text-3xl text-[#EE4F3C] mb-4">“</div>
               <p className="text-gray-900 mb-6">{item.text}</p>
-
-              <div className="flex items-center gap-4 ">
+              <div className="flex items-center gap-4">
                 <img
                   src={item.avatar}
                   alt={item.name}
@@ -42,14 +47,23 @@ const Feedback = () => {
 
         {/* Navigation Dots */}
         <div className="flex justify-center gap-2 mt-8">
-          <span className="w-3 h-3 rounded-full bg-[#EE4F3C]"></span>
-          <span className="w-3 h-3 rounded-full bg-gray-300"></span>
-          <span className="w-3 h-3 rounded-full bg-gray-300"></span>
-          <span className="w-3 h-3 rounded-full bg-gray-300"></span>
+          {FeedbackData.map((_, index) => (
+            <span
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === activeIndex
+                  ? "bg-[#EE4F3C] animate-ping-slow"
+                  : "bg-gray-300"
+              }`}
+            ></span>
+          ))}
         </div>
+        
       </div>
     </section>
   );
 };
 
 export default Feedback;
+
+
