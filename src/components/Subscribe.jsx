@@ -1,6 +1,36 @@
-import React from "react";
+'use client';
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Subscribe = () => {
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const templateParams = {
+      email,
+      name: 'Subscriber',
+      title: 'Newsletter Subscription',
+    };
+
+    emailjs.send(
+      'service_46rub1b', 
+      'template_ayf3rj8', 
+      templateParams,
+      'wxKj5GUV0g4XxH5v0' 
+    )
+    .then(() => {
+      setSent(true);
+      setEmail("");
+      setTimeout(() => setSent(false), 4000);
+    })
+    .catch((error) => {
+      console.error("EmailJS error:", error);
+    });
+  };
+
   return (
     <section className="relative pt-40 pb-20 bg-white overflow-visible">
       {/* Background */}
@@ -33,10 +63,13 @@ const Subscribe = () => {
               Subscribe to get <br /> update vacancy post
             </h2>
 
-            <form className="relative w-full">
+            <form onSubmit={handleSubmit} className="relative w-full">
               <input
                 type="email"
                 placeholder="infomail856@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full py-3 pl-4 pr-32 rounded-md text-black text-sm bg-white outline-none"
               />
               <button
@@ -47,6 +80,10 @@ const Subscribe = () => {
                 <img src="/ion_paper-plane.png" alt="send" className="w-4 h-4" />
               </button>
             </form>
+
+            {sent && (
+              <p className="mt-4 text-sm text-white">Thank you! You’ve been subscribed.</p>
+            )}
           </div>
         </div>
       </div>
@@ -55,4 +92,5 @@ const Subscribe = () => {
 };
 
 export default Subscribe;
+
 
