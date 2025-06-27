@@ -32,7 +32,7 @@ const categories = [
   {
     id: 6,
     title: "Technical Support",
-    icon: "/vector.png",
+    icon: "/Vector.png",
     vacancies: 35,
   },
   {
