@@ -39,7 +39,7 @@ const PostJob = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section id="post-job" className="relative overflow-hidden bg-white">
       {/* Background */}
       <img
         src="/Back.png"

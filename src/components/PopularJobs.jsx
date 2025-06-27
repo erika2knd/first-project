@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 const PopularJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const fetchPopularJobs = async () => {
@@ -16,7 +17,7 @@ const PopularJobs = () => {
             params: {
               app_id: "b8f35ecd",
               app_key: "cd85429465467e2cc68f9dce4a604ce3",
-              results_per_page: 9,
+              results_per_page: 12,
             },
           }
         );
@@ -32,7 +33,7 @@ const PopularJobs = () => {
   const visibleJobs = showAll ? jobs : jobs.slice(0, 3);
 
   return (
-    <section className="bg-[#3A3557] bg-popular-pattern py-20 text-white">
+    <section ref={sectionRef} className="bg-[#3A3557] bg-popular-pattern py-20 text-white">
       <div className="container mx-auto px-4 sm:px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 lg:mb-20">
           Popular Job Posts
@@ -45,7 +46,7 @@ const PopularJobs = () => {
               href={job.redirect_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative p-4 sm:p-6 rounded-2xl w-full max-w-sm bg-white text-gray-900 shadow-lg transition duration-300 transform hover:scale-105 overflow-hidden"
+              className="group relative p-4 sm:p-6 rounded-2xl w-full max-w-sm bg-white text-gray-900 shadow-lg transition duration-300 transform hover:scale-105 overflow-hidden flex flex-col justify-between min-h-[230px] sm:min-h-[250px]"
             >
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#9B3131] to-[#6B3636] opacity-0 group-hover:opacity-100 transition duration-300 z-0" />
 
@@ -62,7 +63,7 @@ const PopularJobs = () => {
                   {job.contract_time || "Unknown"} – {job.location.display_name}
                 </p>
 
-                <div className="flex gap-2 text-sm">
+                <div className="flex gap-2 text-sm mt-auto">
                   <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 group-hover:bg-white/20 group-hover:text-white transition">
                     {job.category.label || "General"}
                   </span>
@@ -80,7 +81,15 @@ const PopularJobs = () => {
         <div className="text-center mt-10">
           <button
             className="text-white text-lg font-semibold underline underline-offset-4 hover:text-orange-500 transition"
-            onClick={() => setShowAll((prev) => !prev)}
+            onClick={() =>
+              setShowAll((prev) => {
+                const newState = !prev;
+                if (prev && sectionRef.current) {
+                  sectionRef.current.scrollIntoView({ behavior: "smooth" });
+                }
+                return newState;
+              })
+            }
           >
             {showAll ? "Collapse ↑" : "View All →"}
           </button>
@@ -91,6 +100,7 @@ const PopularJobs = () => {
 };
 
 export default PopularJobs;
+
 
 
 

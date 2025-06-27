@@ -137,7 +137,7 @@ const Hero = ({ onSearch }) => {
               </div>
 
               {/* Maliha card sm+ */}
-              <div className="absolute bottom-[-10%] left-[-110px] w-[140px] bg-white rounded-2xl shadow-lg p-2 jump-loop hidden sm:block">
+              <div className="absolute bottom-[-10%] left-[-110px] sm:bottom-[-8%] sm:left-[-100px] md:bottom-[-20px] md:left-[0px] lg:bottom-[-10%] lg:left-[-110px]w-[140px] bg-white rounded-2xl shadow-lg p-2 jump-loop hidden sm:block">
                 <div className="w-full h-[80px] bg-purple-600 rounded-lg overflow-hidden flex items-center justify-center">
                   <img src="/milaha.png" alt="Maliha" className="h-full" />
                 </div>

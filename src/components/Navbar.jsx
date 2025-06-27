@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 
 const Navbar = () => {
@@ -19,9 +20,18 @@ const Navbar = () => {
         </nav>
 
         
-        <button className="bg-orange-500 text-white px-5 py-2 rounded-lg hover:bg-orange-600 transition">
+        <button
+          onClick={() => {
+            const section = document.getElementById("post-job");
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+          className="bg-orange-500 text-white px-5 py-2 rounded-lg hover:bg-orange-600 transition"
+        >
           Post a Vacancy
         </button>
+
       </div>
     </header>
   );
